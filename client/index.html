@@ -1,24 +1,48 @@
 <!doctype html>
 <html lang="en" ng-app="application">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation for Apps</title>
+    <title>Gazdálkodj okosan!</title>
     <link href="./assets/css/app.css" rel="stylesheet" type="text/css">
     <script src="./assets/js/foundation.js"></script>
     <script src="./assets/js/templates.js"></script>
     <script src="./assets/js/routes.js"></script>
     <script src="./assets/js/app.js"></script>
-  </head>
-  <body>
-    <div class="grid-frame vertical">
-      <div class="grid-content shrink" style="padding: 0;">
-        <ul class="primary condense menu-bar">
-          <li><a><strong>Foundation for Apps</strong></a></li>
-        </ul>
-      </div>
-      <div ui-view class="grid-content">
-      </div>
+</head>
+
+<body>
+    <div zf-panel="" id="help" position="top">
+        <a zf-close="" class="button">X</a>
+        <div class="grid-frame horizontal">
+            <div class="grid-content">
+                <h2>Mennyi marad a zsebedben?</h2>
+                <p>A költségvetés-készítéssel kapcsolatban már szinte mindent elmondtunk, de a pénzügyi terv szerepével, fontosságával kevesebbet foglalkozunk. Ez a játék azt tanítja meg a játékosoknak, hogy egy előrelátó terv elkészítésével bebiztosíthatják magukat a nem várt kiadásokkal szemben, és sokkal jobb esélyük lesz növelni a megtakarításaikat.</p>
+                <p>A játék tulajdonképpen egy szimulátor. Induláskor az a feladata a felhasználónak, hogy tervezze meg az előtte álló hónap kiadásait: el kell osztania kezdőtőkéjét a legnagyobb kiadási kategóriák közt (ezeket az egyszerűség kedvéért a játék magától felkínálja). Miután a játékos eldöntötte, hogy mennyit fog költeni élelmiszerre, lakásfenntartási és háztartási kiadásokra, közlekedésre, szórakozásra, illetve mennyi tesz félre, „elindul a hónap”.</p>
+                <p>Itt megjelenik egy társasjátékokéhoz hasonló, mezőkre osztott tábla, melynek mezői a hónap napjainak felelnek meg. A játékos ezen a táblán lépésről-lépésre halad előre, s minden nap új költségekkel, „kihívásokkal” szembesül. A rendszer minden lépést követően kijelzi, hogy a játékosnak az adott napon milyen pénzmozgással kell számolnia, pl: „elmentél bulizni”, „megjött a villanyszámla” vagy „prémiumot kaptál a munkahelyeden”. Hogy a játék ne legyen kiszámítható, a konkrét összeget a program bizonyos keretek között véletlenszerűen váltogatja. Ha a játékosnak bevétele keletkezett, szétoszthatja a kategóriák közt, viszont ha ki kell fizetnie valamit, el kell döntenie, hogy a különböző kategóriákra elosztott keretek közül melyikből fizeti ki a tartozását. Ez addig nem probléma, míg van pénz az adott „kasszában”, viszont könnyen előfordulhat, hogy a játék elején nem jól csoportosította a forrásait. A felhasználó olyan mezőkre is léphet, ahol nagy összegű, váratlan kiadások várnak rá, ezek például rögtön felboríthatják a terveit, ha nem képzett valamekkora megtakarítást. </p>
+                <p>A játékosnak az indulást követően még kétszer lehetősége nyílik a pénzügyi terve felülvizsgálatára; a hónap 10. és 20. napján újra módosíthatja a kasszák között szétosztott pénzt. Ezeken a napokon kívül csak akkor változtathat a terven, ha bevétele keletkezett, ilyenkor az adott összeget belátása szerint szétoszthatja a kategóriák között.</p>
+                <p>Ha a játékos úgy jut végig a hónapon, hogy mindig ki tudja fizetni az épp jelentkező kiadásokat az adott célra dedikált kasszából, akkor sikerrel zárja a játékot, de ha nem tud törleszteni, kiesett. </p>
+                <p><strong>A játék menete:</strong></p>
+                    
+                        <h3>Első képernyő</h3>
+                        <p>Tisztában vagy azzal, mire mennyi pénzt kell költened az előtted álló hónapban, vagy csak a szerencsén múlik, hogy egyenesben tudsz-e maradni? Szimulátorunkkal letesztelheted, mennyire vagy előrelátó, mennyire tartod kézben a havi költségvetésed! A hónap első napján kézhez kapod a fizetésed; ebből kell kigazdálkodnod a következő hetek minden kiadását, s csak rajtad múlik, hogy osztod be az összeget. Határozd meg előre, mennyi pénzt szánsz a különböző kiadásokra, és teszteld le, reális volt-e a terved!</p>
+                        <p>A játékot 150 ezer forint bevétellel kezded, ezt az összeget kell szétosztanod az Élelmiszer, Lakásfenntartás és háztartás, Közlekedés, Szórakozás és Megtakarítás kategóriák közt. A játék indítása után a Tovább gombra kattintva haladhatsz előre a hónap napjait jelző táblán; egyes napok kiadásokat, mások újabb bevételeket rejtenek. </p>
+                        <p>Ha bevételed keletkezik, azt a havi fizetéshez hasonlóan szétoszthatod a költségvetési terved „zsebei” közt, viszont ha ki kell fizetned valamit, akkor csak az adott kiadási kategóriának megfelelő kasszából rendezheted, esetleg végszükség esetén a Tartalékból. Ha nem tudod törleszteni a tartozásod, a játék véget ért.</p>
+                        <p>A költségvetési terved nincs kőbe vésve; a hónap tízedik és huszadik napján újra lehetőséged nyílik a keretek módosítására. Mit gondolsz, mire mennyit fogsz költeni? Kattints az indításhoz!</p>
+            </div>
+        </div>
     </div>
-  </body>
+    <div class="grid-frame vertical">
+        <div class="grid-content shrink" style="padding: 0;">
+            <ul class="primary condense menu-bar">
+                <li><a><strong>Gazdálkodj okosan! | Pénziránytű Alapítvány</strong></a></li>
+                <li><a href="#" zf-toggle="help">Segítség</a></li>
+            </ul>
+        </div>
+        <div ui-view class="grid-content">
+        </div>
+    </div>
+</body>
+
 </html>
