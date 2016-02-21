@@ -4,6 +4,7 @@
  * 2. Prevent iOS and IE text size adjust after device orientation change,
  *    without disabling user zoom.
  */
+@import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
 html {
   font-family: sans-serif;
   /* 1 */
