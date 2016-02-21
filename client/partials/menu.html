@@ -1,11 +1,10 @@
 <div class="menu-group primary">
-
-<!-- Main menu -->
-
+    <!-- Main menu -->
     <div class="menu-group-left">
         <ul class="menu-bar primary">
             <li><a><strong>Gazdálkodj okosan!</strong></a></li>
-            <li><a href="#" zf-toggle="stash">Költségvetés</a></li>
+            <li><a href="#" zf-toggle="stash"><i class="icon ion-cash larger"></i>
+            </a></li>
         </ul>
     </div>
     <div class="menu-group-right">
@@ -13,24 +12,23 @@
             <li>
                 <a href="http://penziranytu.hu/" target="_blank"><img src="assets/img/logo.png"></a>
             </li>
-            <li>
-                <a href="#" zf-toggle="help">Segítség</a>
+            <li><a href="#" zf-toggle="help"><i class="icon ion-help larger"></i></a>
             </li>
         </ul>
     </div>
 </div>
-
-<!-- Panel content -->
-
+<!-- // Main menu -->
+<!-- Panel contents -->
+<!-- Help -->
 <div zf-panel="" id="help" position="top">
-    <a zf-close="" class="button">X</a>
     <div class="grid-frame">
         <div data-ng-include data-src="'partials/help.html'"></div>
     </div>
 </div>
+<!-- Stash -->
 <div zf-panel="" id="stash" position="top">
-    <a zf-close="" class="button">X</a>
     <div class="grid-frame">
         <div data-ng-include data-src="'partials/stash.html'"></div>
     </div>
 </div>
+<!-- // Panel contents -->

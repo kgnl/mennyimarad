@@ -6505,12 +6505,27 @@ blockquote p {
 .float-none {
   float: none; }
 
+/*********
+
+game colors
+
+*********/
+/*********
+
+stash
+
+*********/
 .panel-top {
   height: 100%; }
 
 .menu-group.primary {
   background-color: #bdbdbf; }
 
+/**********
+
+stash cards
+
+**********/
 .card.home {
   background: #DF574B; }
 
@@ -6526,5 +6541,18 @@ blockquote p {
 .card.transport {
   background: #3FAA96; }
 
+/*********
+
+just for the visible content blocks DILETE AFTER BUILD
+
+***********/
 .grid-block {
   background: rgba(0, 85, 139, 0.1); }
+
+/**********
+
+ioniocon size
+
+**********/
+.larger {
+  font-size: 32px; }

@@ -6,13 +6,23 @@
 // Application Colors
 // keresd a _settings.scss-ben
 
-// game colors
+/*********
+
+game colors
+
+*********/ 
+
 $gamelightbrown: #dbc491;
 $gamered: #DC5949;
 $gamebrown:#D6B972;
 $gameyellow: #EFC825;
 
-// stash 
+/*********
+
+stash
+
+*********/  
+
 $stashred: #DF574B;
 $stashgrey: #75756D;
 $stashlight: #E3D8BC;
@@ -26,6 +36,12 @@ $stashgreen: #3FAA96;
 .menu-group.primary {
     background-color: #bdbdbf;
 }
+
+/**********
+
+stash cards
+
+**********/
 
 .card.home {
     background: $stashred;
@@ -47,6 +63,21 @@ $stashgreen: #3FAA96;
     background: $stashgreen;
 }
 
+/*********
+
+just for the visible content blocks DILETE AFTER BUILD
+
+***********/
 .grid-block {
 	background: rgba(0, 85, 139, 0.1);
+}
+
+/**********
+
+ioniocon size
+
+**********/
+
+.larger {
+    font-size: 32px;
 }
