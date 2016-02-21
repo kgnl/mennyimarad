@@ -12,6 +12,14 @@
   ])
     .config(config)
     .run(run)
+    .controller('GameCtrl', function($scope) {
+       $scope.home = 0;
+       $scope.savings = 150000;
+       $scope.party = 0;
+       $scope.food = 0;
+       $scope.transport = 0;
+    })
+
   ;
 
   config.$inject = ['$urlRouterProvider', '$locationProvider'];
