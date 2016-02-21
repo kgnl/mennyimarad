@@ -1,0 +1,36 @@
+<div class="menu-group primary">
+
+<!-- Main menu -->
+
+    <div class="menu-group-left">
+        <ul class="menu-bar primary">
+            <li><a><strong>Gazdálkodj okosan!</strong></a></li>
+            <li><a href="#" zf-toggle="stash">Költségvetés</a></li>
+        </ul>
+    </div>
+    <div class="menu-group-right">
+        <ul class="icon-left primary menu-bar">
+            <li>
+                <a href="http://penziranytu.hu/" target="_blank"><img src="assets/img/logo.png"></a>
+            </li>
+            <li>
+                <a href="#" zf-toggle="help"><img zf-iconic="" icon="cog" size="small" class="iconic-color-dark"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Panel content -->
+
+<div zf-panel="" id="help" position="top">
+    <a zf-close="" class="button">X</a>
+    <div class="grid-frame">
+        <div data-ng-include data-src="'partials/help.html'"></div>
+    </div>
+</div>
+<div zf-panel="" id="stash" position="top">
+    <a zf-close="" class="button">X</a>
+    <div class="grid-frame">
+        <div data-ng-include data-src="'partials/stash.html'"></div>
+    </div>
+</div>
