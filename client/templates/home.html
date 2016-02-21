@@ -1,9 +1,10 @@
---- 
-name: home 
-url: / 
+---
+name: home
+url: /
+animationIn: fadeIn
+animationOut: fadeOut
 ---
 
-<div class="grid-container">
-    <h1>Welcome to Foundation for Apps!</h1>
-    <p class="lead">This is version <strong>1.2 Eiger</strong>.</p>
-</div>
+
+<div data-ng-include data-src="'partials/stash.html'"></div>
+<div data-ng-include data-src="'partials/playground.html'"></div>

@@ -1,12 +1,31 @@
 @import "settings";
 @import "foundation";
-
-
-body {
-  font: 100% Helvetica, sans-serif;
-  background-color: #ffffff;
+// Application Colors
+// keresd a _settings.scss-ben
+.panel-top {
+    height: 100%;
 }
 
-.panel-top {
-	height: 100%;
+.menu-group.primary {
+    background-color: #bdbdbf;
+}
+
+.card.home {
+    background: #43AC6A;
+}
+
+.card.savings {
+    background: #43AC6A;
+}
+
+.card.party {
+    background: #43AC6A;
+}
+
+.card.food {
+    background: #43AC6A;
+}
+
+.card.transport {
+    background: #43AC6A;
 }
