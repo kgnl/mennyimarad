@@ -2,6 +2,20 @@
 @import "foundation";
 // Application Colors
 // keresd a _settings.scss-ben
+
+// game colors
+$gamelightbrown: #dbc491;
+$gamered: #DC5949;
+$gamebrown:#D6B972;
+$gameyellow: #EFC825;
+
+// stash 
+$stashred: #DF574B;
+$stashgrey: #75756D;
+$stashlight: #E3D8BC;
+$stashdarkgrey: #7C7C7C;
+$stashgreen: #3FAA96;
+
 .panel-top {
     height: 100%;
 }
@@ -11,21 +25,21 @@
 }
 
 .card.home {
-    background: #43AC6A;
+    background: $stashred;
 }
 
 .card.savings {
-    background: #43AC6A;
+    background: $stashgrey;
 }
 
 .card.party {
-    background: #43AC6A;
+    background: $stashlight;
 }
 
 .card.food {
-    background: #43AC6A;
+    background: $stashdarkgrey;
 }
 
 .card.transport {
-    background: #43AC6A;
+    background: $stashgreen;
 }
