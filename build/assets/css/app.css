@@ -6524,3 +6524,6 @@ blockquote p {
 
 .card.transport {
   background: #3FAA96; }
+
+.grid-block {
+  background: rgba(0, 85, 139, 0.1); }
