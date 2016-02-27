@@ -33,15 +33,22 @@ $stashgreen: #3FAA96;
     height: 100%;
 }
 
-.menu-group.primary {
-    background-color: #bdbdbf;
+.menu-bar {
+	background-color: #ededed;
 }
+
+.menu-group.primary .menu-bar {
+	background-color: #ededed;
+}
+
 
 /**********
 
 stash cards
 
 **********/
+
+/*
 
 .card.home {
     background: $stashred;
@@ -62,6 +69,8 @@ stash cards
 .card.transport {
     background: $stashgreen;
 }
+
+*/
 
 /*********
 
