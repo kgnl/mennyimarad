@@ -59,6 +59,13 @@
         }
 
         $scope.valueChanged = function(value, target) {
+
+          if (isNaN(parseInt(value))){
+            value = 0;
+          }else{
+            value = parseInt(value);
+          }
+
           if ($scope.isModified == false){
               $scope.isModified = true;
 
