@@ -4,8 +4,6 @@
   angular.module('application', [
     'ui.router',
     'ngAnimate',
-
-    //foundation
     'foundation',
     'foundation.dynamicRouting',
     'foundation.dynamicRouting.animations'
@@ -13,6 +11,7 @@
     .config(config)
     .run(run)
     .controller('GameCtrl', function($scope) {
+        $scope.isModified = false;
         $scope.remained = 150000;
         $scope.savings = $scope.remained;
         $scope.home = 0;
@@ -20,6 +19,24 @@
         $scope.food = 0;
         $scope.transport = 0;
 
+        $scope.startStateOfHome = 0;
+        $scope.startStateOfParty = 0;
+        $scope.startStateOfFood = 0;
+        $scope.startStateOfTransport = 0;
+        $scope.startStateOfSavings = 0;
+
+        $scope.getHome = function() {
+            return $scope.home;
+        }
+        $scope.getParty = function() {
+            return $scope.party;
+        }
+        $scope.getFood = function() {
+            return $scope.food;
+        }
+        $scope.getTransport = function() {
+            return $scope.transport;
+        }
 
         $scope.filterValue = function($event){
           if ($event.keyCode < 48 || $event.keyCode > 57 ){
@@ -27,7 +44,31 @@
           }
         };
 
+        $scope.mentes = function() {
+            $scope.isModified = false;
+        }
+
+        $scope.megse = function() {
+            $scope.isModified = false;
+
+            $scope.home = $scope.startStateOfHome;
+            $scope.party = $scope.startStateOfParty;
+            $scope.food = $scope.startStateOfFood;
+            $scope.transport = $scope.startStateOfTransport;
+            $scope.savings = $scope.startStateOfSavings;
+        }
+
         $scope.valueChanged = function(value, target) {
+          if ($scope.isModified == false){
+              $scope.isModified = true;
+
+              $scope.startStateOfHome = $scope.home;
+              $scope.startStateOfParty = $scope.party;
+              $scope.startStateOfFood = $scope.food;
+              $scope.startStateOfTransport = $scope.transport;
+              $scope.startStateOfSavings = $scope.savings;
+          }
+
 
             if (target == "home"){
                  $scope.savings = $scope.remained - $scope.party - $scope.food - $scope.transport;
