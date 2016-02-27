@@ -49,13 +49,15 @@
         }
 
         $scope.megse = function() {
-            $scope.isModified = false;
+            if($scope.isModified == true){
+                $scope.isModified = false;
 
-            $scope.home = $scope.startStateOfHome;
-            $scope.party = $scope.startStateOfParty;
-            $scope.food = $scope.startStateOfFood;
-            $scope.transport = $scope.startStateOfTransport;
-            $scope.savings = $scope.startStateOfSavings;
+                $scope.home = $scope.startStateOfHome;
+                $scope.party = $scope.startStateOfParty;
+                $scope.food = $scope.startStateOfFood;
+                $scope.transport = $scope.startStateOfTransport;
+                $scope.savings = $scope.startStateOfSavings;
+            }
         }
 
         $scope.valueChanged = function(value, target) {

@@ -36,7 +36,7 @@ $stashgreen: #3FAA96;
 .menu-bar {
 	background-color: #ededed;
 }
-
+.menu-group.primary,
 .menu-group.primary .menu-bar {
 	background-color: #ededed;
 }
@@ -89,4 +89,34 @@ ioniocon size
 
 .larger {
     font-size: 32px;
+}
+
+
+/*
+
+    Playground
+
+*/
+
+/*  
+    canvas
+*/
+
+#gameArea {
+  position: absolute;
+  left:     50%;
+  top:      50%;
+}
+
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 1140px;
+    height: 723px;
+    z-index: 100;
+    position: fixed;
+    background-image: url(../img/gamebg.png);
 }
