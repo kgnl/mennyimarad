@@ -6518,29 +6518,40 @@ stash
 .panel-top {
   height: 100%; }
 
-.menu-group.primary {
-  background-color: #bdbdbf; }
+.menu-bar {
+  background-color: #ededed; }
+
+.menu-group.primary .menu-bar {
+  background-color: #ededed; }
 
 /**********
 
 stash cards
 
 **********/
+/*
+
 .card.home {
-  background: #DF574B; }
+    background: $stashred;
+}
 
 .card.savings {
-  background: #75756D; }
+    background: $stashgrey;
+}
 
 .card.party {
-  background: #E3D8BC; }
+    background: $stashlight;
+}
 
 .card.food {
-  background: #7C7C7C; }
+    background: $stashdarkgrey;
+}
 
 .card.transport {
-  background: #3FAA96; }
+    background: $stashgreen;
+}
 
+*/
 /*********
 
 just for the visible content blocks DILETE AFTER BUILD
