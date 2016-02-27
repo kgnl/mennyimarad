@@ -6,8 +6,8 @@
             <div class="card-divider">
                 <label>
                     <span class="inline-label">
-                    <input ng-model="home" type="search" placeholder="összeg">
-                    
+                    <input ng-model="home" type="search" ng-change="home = valueChanged(home, 'home')" ng-keypress="filterValue($event)">
+
                     </span>
                 </label>
             </div>
@@ -19,8 +19,8 @@
             <div class="card-divider">
                 <label>
                     <span class="inline-label">
-                    <input ng-model="savings" type="search" placeholder="összeg">
-                    
+                    <input ng-model="savings" type="search" ng-readonly="true">
+
                     </span>
                 </label>
             </div>
@@ -32,8 +32,8 @@
             <div class="card-divider">
                 <label>
                     <span class="inline-label">
-                    <input ng-model="party" type="search" placeholder="összeg">
-                    
+                    <input ng-model="party" type="search" ng-change="party = valueChanged(party, 'party')" ng-keypress="filterValue($event)">
+
                     </span>
                 </label>
             </div>
@@ -45,8 +45,8 @@
             <div class="card-divider">
                 <label>
                     <span class="inline-label">
-                    <input ng-model="food" type="search" placeholder="összeg">
-                    
+                    <input ng-model="food" type="search" ng-change="food = valueChanged(food, 'food')" ng-keypress="filterValue($event)">
+
                     </span>
                 </label>
             </div>
@@ -58,8 +58,8 @@
             <div class="card-divider">
                 <label>
                     <span class="inline-label align-right">
-                    <input ng-model="transport" type="search" placeholder="összeg">
-                    
+                    <input ng-model="transport" type="search" ng-change="transport = valueChanged(transport, 'transport')" ng-keypress="filterValue($event)">
+
                     </span>
                 </label>
             </div>

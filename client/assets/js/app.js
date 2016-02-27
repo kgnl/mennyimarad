@@ -13,14 +13,83 @@
     .config(config)
     .run(run)
     .controller('GameCtrl', function($scope) {
-       $scope.home = 0;
-       $scope.savings = 150000;
-       $scope.party = 0;
-       $scope.food = 0;
-       $scope.transport = 0;
-    })
+        $scope.remained = 150000;
+        $scope.savings = $scope.remained;
+        $scope.home = 0;
+        $scope.party = 0;
+        $scope.food = 0;
+        $scope.transport = 0;
 
-  ;
+
+        $scope.filterValue = function($event){
+          if ($event.keyCode < 48 || $event.keyCode > 57 ){
+              $event.preventDefault();
+          }
+        };
+
+        $scope.valueChanged = function(value, target) {
+
+            if (target == "home"){
+                 $scope.savings = $scope.remained - $scope.party - $scope.food - $scope.transport;
+            } else if (target == "party") {
+                 $scope.savings = $scope.remained -$scope.food - $scope.transport - $scope.home;
+            } else if (target == "food") {
+                 $scope.savings = $scope.remained - $scope.party - $scope.transport - $scope.home;
+            } else if (target == "transport") {
+                 $scope.savings = $scope.remained - $scope.party - $scope.food - $scope.home;
+            }
+
+            if ($scope.savings == 0)
+            {
+              if (target == "home"){
+                  return $scope.home;
+              } else if (target == "party") {
+                  return $scope.party;
+              } else if (target == "food") {
+                  return $scope.food;
+              } else if (target == "transport") {
+                  return $scope.transport;
+              }
+            } else if ($scope.savings - value < 0){
+
+                if (target == "home"){
+                    $scope.home = $scope.savings;
+                    $scope.savings = 0;
+                    return $scope.home;
+                } else if (target == "party") {
+                    $scope.party = $scope.savings;
+                    $scope.savings = 0;
+                    return $scope.party;
+                } else if (target == "food") {
+                    $scope.food = $scope.savings;
+                    $scope.savings = 0;
+                    return $scope.food;
+                } else if (target == "transport") {
+                    $scope.transport = $scope.savings;
+                    $scope.savings = 0;
+                    return $scope.transport;
+                }
+            } else {
+                if (target == "home"){
+                    $scope.savings = $scope.savings - value;
+                    $scope.home = value;
+                } else if (target == "party") {
+                    $scope.savings = $scope.savings - value;
+                    $scope.party = value;
+                } else if (target == "food") {
+                    $scope.savings = $scope.savings - value;
+                    $scope.food = value;
+                } else if (target == "transport") {
+                    $scope.savings = $scope.savings - value;
+                    $scope.transport = value;
+                }
+
+                return value;
+            }
+        };
+
+    })
+;
 
   config.$inject = ['$urlRouterProvider', '$locationProvider'];
 
