@@ -6577,11 +6577,12 @@ ioniocon size
 /*  
     canvas
 */
+/*
 #gameArea {
   position: absolute;
-  left: 50%;
-  top: 50%; }
-
+  left:     50%;
+  top:      50%;
+}*/
 canvas {
   padding-left: 0;
   padding-right: 0;
@@ -6590,6 +6591,5 @@ canvas {
   display: block;
   width: 1140px;
   height: 723px;
-  z-index: 100;
-  position: fixed;
+  /*z-index: 100;*/
   background-image: url(../img/gamebg.png); }

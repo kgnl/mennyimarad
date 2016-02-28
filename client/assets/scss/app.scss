@@ -1,8 +1,6 @@
 @import "settings";
 @import "foundation";
 @import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
-
-
 // Application Colors
 // keresd a _settings.scss-ben
 
@@ -10,7 +8,7 @@
 
 game colors
 
-*********/ 
+*********/
 
 $gamelightbrown: #dbc491;
 $gamered: #DC5949;
@@ -21,24 +19,24 @@ $gameyellow: #EFC825;
 
 stash
 
-*********/  
+*********/
 
 $stashred: #DF574B;
 $stashgrey: #75756D;
 $stashlight: #E3D8BC;
 $stashdarkgrey: #7C7C7C;
 $stashgreen: #3FAA96;
-
 .panel-top {
     height: 100%;
 }
 
 .menu-bar {
-	background-color: #ededed;
+    background-color: #ededed;
 }
+
 .menu-group.primary,
 .menu-group.primary .menu-bar {
-	background-color: #ededed;
+    background-color: #ededed;
 }
 
 
@@ -47,6 +45,7 @@ $stashgreen: #3FAA96;
 stash cards
 
 **********/
+
 
 /*
 
@@ -72,14 +71,17 @@ stash cards
 
 */
 
+
 /*********
 
 just for the visible content blocks DILETE AFTER BUILD
 
 ***********/
+
 .grid-block {
-	background: rgba(0, 85, 139, 0.1);
+    background: rgba(0, 85, 139, 0.1);
 }
+
 
 /**********
 
@@ -98,15 +100,18 @@ ioniocon size
 
 */
 
+
 /*  
     canvas
 */
 
+
+/*
 #gameArea {
   position: absolute;
   left:     50%;
   top:      50%;
-}
+}*/
 
 canvas {
     padding-left: 0;
@@ -116,7 +121,6 @@ canvas {
     display: block;
     width: 1140px;
     height: 723px;
-    z-index: 100;
-    position: fixed;
+    /*z-index: 100;*/
     background-image: url(../img/gamebg.png);
 }
