@@ -4,6 +4,9 @@
 // Application Colors
 // keresd a _settings.scss-ben
 
+$primary-color: #bdbdbf;
+$secondary-color: #3EAA90;
+
 /*********
 
 game colors
@@ -36,10 +39,18 @@ $stashgreen: #3FAA96;
 
 .menu-group.primary,
 .menu-group.primary .menu-bar {
-    background-color: #ededed;
+    background-color: #FFDA86;
+}
+.menu-group .menu-bar > li:active {
+    background-color: #DBC491;
 }
 
-
+.menu-bar > li > a  {
+    padding: 0.5rem;
+}
+img.plogo {
+    height: 32px;
+}
 /**********
 
 stash cards
