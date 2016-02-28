@@ -44320,114 +44320,6 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.accordion', [])
-    .controller('ZfAccordionController', zfAccordionController)
-    .directive('zfAccordion', zfAccordion)
-    .directive('zfAccordionItem', zfAccordionItem)
-  ;
-
-  zfAccordionController.$inject = ['$scope'];
-
-  function zfAccordionController($scope) {
-    var controller = this;
-    var sections = controller.sections = $scope.sections = [];
-    var multiOpen = controller.multiOpen = $scope.multiOpen = $scope.multiOpen || false;
-    var collapsible = controller.collapsible = $scope.collapsible = $scope.multiOpen || $scope.collapsible || true; //multi open infers a collapsible true
-    var autoOpen = controller.autoOpen = $scope.autoOpen = $scope.autoOpen || true; //auto open opens first tab on render
-
-    controller.select = function(selectSection) {
-      sections.forEach(function(section) {
-        //if multi open is allowed, toggle a tab
-        if(controller.multiOpen) {
-          if(section.scope === selectSection) {
-            section.scope.active = !section.scope.active;
-          }
-        } else {
-          //non  multi open will close all tabs and open one
-          if(section.scope === selectSection) {
-            //if collapsible is allowed, a tab will toggle
-            section.scope.active = collapsible ? !section.scope.active : true;
-          } else {
-            section.scope.active = false;
-          }
-        }
-
-      });
-    };
-
-    controller.addSection = function addsection(sectionScope) {
-      sections.push({ scope: sectionScope });
-
-      if(sections.length === 1 && autoOpen === true) {
-        sections[0].active = true;
-        sections[0].scope.active = true;
-      }
-    };
-
-    controller.closeAll = function() {
-      sections.forEach(function(section) {
-        section.scope.active = false;
-      });
-    };
-  }
-
-  function zfAccordion() {
-    var directive = {
-      restrict: 'EA',
-      transclude: 'true',
-      replace: true,
-      templateUrl: 'components/accordion/accordion.html',
-      controller: 'ZfAccordionController',
-      scope: {
-        multiOpen: '@?',
-        collapsible: '@?',
-        autoOpen: '@?'
-      },
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs, controller) {
-      scope.multiOpen = controller.multiOpen = scope.multiOpen === "true" ? true : false;
-      scope.collapsible = controller.collapsible = scope.collapsible === "true" ? true : false;
-      scope.autoOpen = controller.autoOpen = scope.autoOpen === "true" ? true : false;
-    }
-  }
-
-  //accordion item
-  function zfAccordionItem() {
-    var directive = {
-        restrict: 'EA',
-        templateUrl: 'components/accordion/accordion-item.html',
-        transclude: true,
-        scope: {
-          title: '@'
-        },
-        require: '^zfAccordion',
-        replace: true,
-        controller: function() {},
-        link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs, controller, transclude) {
-      scope.active = false;
-      controller.addSection(scope);
-
-      scope.activate = function() {
-        controller.select(scope);
-      };
-
-    }
-  }
-
-})();
-
-(function() {
-  'use strict';
-
   angular.module('foundation.actionsheet', ['foundation.core'])
     .controller('ZfActionSheetController', zfActionSheetController)
     .directive('zfActionSheet', zfActionSheet)
@@ -44788,192 +44680,6 @@ angular.module('markdown', [])
     }
   }
 
-<<<<<<< HEAD
-  zfAsContent.$inject = ['FoundationApi'];
-
-  function zfAsContent(foundationApi) {
-    var directive = {
-      restrict: 'EA',
-      transclude: true,
-      replace: true,
-      templateUrl: 'components/actionsheet/actionsheet-content.html',
-      require: '^zfActionSheet',
-      scope: {
-        position: '@?'
-      },
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs, controller) {
-      scope.active = false;
-      scope.position = scope.position || 'bottom';
-      controller.registerContent(scope);
-
-      scope.toggle = function() {
-        scope.active = !scope.active;
-        if(scope.active) {
-          controller.registerListener();
-        } else {
-          controller.deregisterListener();
-        }
-
-        return;
-      };
-
-      scope.hide = function() {
-        scope.active = false;
-        controller.deregisterListener();
-        return;
-      };
-
-      scope.show = function() {
-        scope.active = true;
-        controller.registerListener();
-        return;
-      };
-    }
-  }
-
-  zfAsButton.$inject = ['FoundationApi'];
-
-  function zfAsButton(foundationApi) {
-    var directive = {
-      restrict: 'EA',
-      transclude: true,
-      replace: true,
-      templateUrl: 'components/actionsheet/actionsheet-button.html',
-      require: '^zfActionSheet',
-      scope: {
-        title: '@?'
-      },
-      link: link
-    }
-
-    return directive;
-
-    function link(scope, element, attrs, controller) {
-
-      element.on('click', function(e) {
-        controller.toggle();
-        e.preventDefault();
-      });
-
-    }
-  }
-
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('foundation.common', ['foundation.core'])
-    .directive('zfClose', zfClose)
-    .directive('zfOpen', zfOpen)
-    .directive('zfToggle', zfToggle)
-    .directive('zfEscClose', zfEscClose)
-    .directive('zfSwipeClose', zfSwipeClose)
-    .directive('zfHardToggle', zfHardToggle)
-    .directive('zfCloseAll', zfCloseAll)
-  ;
-
-  zfClose.$inject = ['FoundationApi'];
-
-  function zfClose(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      var targetId = '';
-      if (attrs.zfClose) {
-        targetId = attrs.zfClose;
-      } else {
-        var parentElement= false;
-        var tempElement = element.parent();
-        //find parent modal
-        while(parentElement === false) {
-          if(tempElement[0].nodeName == 'BODY') {
-            parentElement = '';
-          }
-
-          if(typeof tempElement.attr('zf-closable') !== 'undefined' && tempElement.attr('zf-closable') !== false) {
-            parentElement = tempElement;
-          }
-
-          tempElement = tempElement.parent();
-        }
-        targetId = parentElement.attr('id');
-      }
-      element.on('click', function(e) {
-        foundationApi.publish(targetId, 'close');
-        e.preventDefault();
-      });
-    }
-  }
-
-  zfOpen.$inject = ['FoundationApi'];
-
-  function zfOpen(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      element.on('click', function(e) {
-        foundationApi.publish(attrs.zfOpen, 'open');
-        e.preventDefault();
-      });
-    }
-  }
-
-  zfToggle.$inject = ['FoundationApi'];
-
-  function zfToggle(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    }
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      element.on('click', function(e) {
-        foundationApi.publish(attrs.zfToggle, 'toggle');
-        e.preventDefault();
-      });
-    }
-  }
-
-  zfEscClose.$inject = ['FoundationApi'];
-
-  function zfEscClose(foundationApi) {
-    var directive = {
-      restrict: 'A',
-      link: link
-    };
-
-    return directive;
-
-    function link(scope, element, attrs) {
-      element.on('keyup', function(e) {
-        if (e.keyCode === 27) {
-          foundationApi.closeActiveElements();
-        }
-        e.preventDefault();
-      });
-    }
-  }
-
-=======
->>>>>>> origin/master
   zfSwipeClose.$inject = ['FoundationApi'];
 
   function zfSwipeClose(foundationApi) {
@@ -45082,6 +44788,114 @@ angular.module('markdown', [])
       return false;
     }
   }
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('foundation.accordion', [])
+    .controller('ZfAccordionController', zfAccordionController)
+    .directive('zfAccordion', zfAccordion)
+    .directive('zfAccordionItem', zfAccordionItem)
+  ;
+
+  zfAccordionController.$inject = ['$scope'];
+
+  function zfAccordionController($scope) {
+    var controller = this;
+    var sections = controller.sections = $scope.sections = [];
+    var multiOpen = controller.multiOpen = $scope.multiOpen = $scope.multiOpen || false;
+    var collapsible = controller.collapsible = $scope.collapsible = $scope.multiOpen || $scope.collapsible || true; //multi open infers a collapsible true
+    var autoOpen = controller.autoOpen = $scope.autoOpen = $scope.autoOpen || true; //auto open opens first tab on render
+
+    controller.select = function(selectSection) {
+      sections.forEach(function(section) {
+        //if multi open is allowed, toggle a tab
+        if(controller.multiOpen) {
+          if(section.scope === selectSection) {
+            section.scope.active = !section.scope.active;
+          }
+        } else {
+          //non  multi open will close all tabs and open one
+          if(section.scope === selectSection) {
+            //if collapsible is allowed, a tab will toggle
+            section.scope.active = collapsible ? !section.scope.active : true;
+          } else {
+            section.scope.active = false;
+          }
+        }
+
+      });
+    };
+
+    controller.addSection = function addsection(sectionScope) {
+      sections.push({ scope: sectionScope });
+
+      if(sections.length === 1 && autoOpen === true) {
+        sections[0].active = true;
+        sections[0].scope.active = true;
+      }
+    };
+
+    controller.closeAll = function() {
+      sections.forEach(function(section) {
+        section.scope.active = false;
+      });
+    };
+  }
+
+  function zfAccordion() {
+    var directive = {
+      restrict: 'EA',
+      transclude: 'true',
+      replace: true,
+      templateUrl: 'components/accordion/accordion.html',
+      controller: 'ZfAccordionController',
+      scope: {
+        multiOpen: '@?',
+        collapsible: '@?',
+        autoOpen: '@?'
+      },
+      link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs, controller) {
+      scope.multiOpen = controller.multiOpen = scope.multiOpen === "true" ? true : false;
+      scope.collapsible = controller.collapsible = scope.collapsible === "true" ? true : false;
+      scope.autoOpen = controller.autoOpen = scope.autoOpen === "true" ? true : false;
+    }
+  }
+
+  //accordion item
+  function zfAccordionItem() {
+    var directive = {
+        restrict: 'EA',
+        templateUrl: 'components/accordion/accordion-item.html',
+        transclude: true,
+        scope: {
+          title: '@'
+        },
+        require: '^zfAccordion',
+        replace: true,
+        controller: function() {},
+        link: link
+    };
+
+    return directive;
+
+    function link(scope, element, attrs, controller, transclude) {
+      scope.active = false;
+      controller.addSection(scope);
+
+      scope.activate = function() {
+        controller.select(scope);
+      };
+
+    }
+  }
+
 })();
 
 (function () {
@@ -46362,173 +46176,6 @@ angular.module('markdown', [])
 (function() {
   'use strict';
 
-  angular.module('foundation.panel', ['foundation.core'])
-    .directive('zfPanel', zfPanel)
-    .service('FoundationPanel', FoundationPanel)
-  ;
-
-  FoundationPanel.$inject = ['FoundationApi'];
-
-  function FoundationPanel(foundationApi) {
-    var service    = {};
-
-    service.activate = activate;
-    service.deactivate = deactivate;
-
-    return service;
-
-    //target should be element ID
-    function activate(target) {
-      foundationApi.publish(target, 'show');
-    }
-
-    //target should be element ID
-    function deactivate(target) {
-      foundationApi.publish(target, 'hide');
-    }
-  }
-
-  zfPanel.$inject = ['FoundationApi', '$window'];
-
-  function zfPanel(foundationApi, $window) {
-    var directive = {
-      restrict: 'EA',
-      templateUrl: 'components/panel/panel.html',
-      transclude: true,
-      scope: {
-        position: '@?'
-      },
-      replace: true,
-      compile: compile
-    };
-
-    return directive;
-
-    function compile(tElement, tAttrs, transclude) {
-      var type = 'panel';
-      var animate = tAttrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
-
-      return {
-        pre: preLink,
-        post: postLink
-      };
-
-      function preLink(scope, iElement, iAttrs, controller) {
-        iAttrs.$set('zf-closable', type);
-        scope.position = scope.position || 'left';
-        scope.positionClass = 'panel-' + scope.position;
-      }
-
-      function postLink(scope, element, attrs) {
-        scope.active = false;
-        var animationIn, animationOut;
-        var globalQueries = foundationApi.getSettings().mediaQueries;
-        var setAnim = {
-          left: function(){
-            animationIn  = attrs.animationIn || 'slideInRight';
-            animationOut = attrs.animationOut || 'slideOutLeft';
-          },
-          right: function(){
-            animationIn  = attrs.animationIn || 'slideInLeft';
-            animationOut = attrs.animationOut || 'slideOutRight';
-          },
-          top: function(){
-            animationIn  = attrs.animationIn || 'slideInDown';
-            animationOut = attrs.animationOut || 'slideOutUp';
-          },
-          bottom: function(){
-            animationIn  = attrs.animationIn || 'slideInUp';
-            animationOut = attrs.animationOut || 'slideOutDown';
-          }
-        };
-        setAnim[scope.position]();
-        //urgh, there must be a better way, ***there totally is btw***
-        // if(scope.position === 'left') {
-        //   animationIn  = attrs.animationIn || 'slideInRight';
-        //   animationOut = attrs.animationOut || 'slideOutLeft';
-        // } else if (scope.position === 'right') {
-        //   animationIn  = attrs.animationIn || 'slideInLeft';
-        //   animationOut = attrs.animationOut || 'slideOutRight';
-        // } else if (scope.position === 'top') {
-        //   animationIn  = attrs.animationIn || 'slideInDown';
-        //   animationOut = attrs.animationOut || 'slideOutUp';
-        // } else if (scope.position === 'bottom') {
-        //   animationIn  = attrs.animationIn || 'slideInUp';
-        //   animationOut = attrs.animationOut || 'slideOutDown';
-        // }
-
-
-        //setup
-        foundationApi.subscribe(attrs.id, function(msg) {
-          var panelPosition = $window.getComputedStyle(element[0]).getPropertyValue("position");
-
-          // patch to prevent panel animation on larger screen devices
-          // don't run animation on grid elements, only panel
-          if (panelPosition == 'static' || panelPosition == 'relative') {
-            return;
-          }
-
-          if(msg == 'show' || msg == 'open') {
-            scope.show();
-          } else if (msg == 'close' || msg == 'hide') {
-            scope.hide();
-          } else if (msg == 'toggle') {
-            scope.toggle();
-          }
-
-          if (!scope.$root.$$phase) {
-            scope.$apply();
-          }
-
-          return;
-        });
-
-        // function finish(el)
-
-        scope.hide = function() {
-          if(scope.active){
-            scope.active = false;
-            animate(element, scope.active, animationIn, animationOut);
-          }
-
-          return;
-        };
-
-        scope.show = function() {
-          if(!scope.active){
-            scope.active = true;
-            animate(element, scope.active, animationIn, animationOut);
-          }
-
-          return;
-        };
-
-        scope.toggle = function() {
-          scope.active = !scope.active;
-          animate(element, scope.active, animationIn, animationOut);
-
-          return;
-        };
-
-        element.on('click', function(e) {
-          // Check sizing
-          var srcEl = e.target;
-
-          if (!matchMedia(globalQueries.medium).matches && srcEl.href && srcEl.href.length > 0) {
-            // Hide element if it can't match at least medium
-            scope.hide();
-            animate(element, scope.active, animationIn, animationOut);
-          }
-        });
-      }
-    }
-  }
-
-})();
-
-(function() {
-  'use strict';
-
   angular.module('foundation.offcanvas', ['foundation.core'])
     .directive('zfOffcanvas', zfOffcanvas)
     .service('FoundationOffcanvas', FoundationOffcanvas)
@@ -46785,6 +46432,173 @@ angular.module('markdown', [])
         foundationApi.publish(target, ['toggle', id]);
         e.preventDefault();
       });
+    }
+  }
+
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('foundation.panel', ['foundation.core'])
+    .directive('zfPanel', zfPanel)
+    .service('FoundationPanel', FoundationPanel)
+  ;
+
+  FoundationPanel.$inject = ['FoundationApi'];
+
+  function FoundationPanel(foundationApi) {
+    var service    = {};
+
+    service.activate = activate;
+    service.deactivate = deactivate;
+
+    return service;
+
+    //target should be element ID
+    function activate(target) {
+      foundationApi.publish(target, 'show');
+    }
+
+    //target should be element ID
+    function deactivate(target) {
+      foundationApi.publish(target, 'hide');
+    }
+  }
+
+  zfPanel.$inject = ['FoundationApi', '$window'];
+
+  function zfPanel(foundationApi, $window) {
+    var directive = {
+      restrict: 'EA',
+      templateUrl: 'components/panel/panel.html',
+      transclude: true,
+      scope: {
+        position: '@?'
+      },
+      replace: true,
+      compile: compile
+    };
+
+    return directive;
+
+    function compile(tElement, tAttrs, transclude) {
+      var type = 'panel';
+      var animate = tAttrs.hasOwnProperty('zfAdvise') ? foundationApi.animateAndAdvise : foundationApi.animate;
+
+      return {
+        pre: preLink,
+        post: postLink
+      };
+
+      function preLink(scope, iElement, iAttrs, controller) {
+        iAttrs.$set('zf-closable', type);
+        scope.position = scope.position || 'left';
+        scope.positionClass = 'panel-' + scope.position;
+      }
+
+      function postLink(scope, element, attrs) {
+        scope.active = false;
+        var animationIn, animationOut;
+        var globalQueries = foundationApi.getSettings().mediaQueries;
+        var setAnim = {
+          left: function(){
+            animationIn  = attrs.animationIn || 'slideInRight';
+            animationOut = attrs.animationOut || 'slideOutLeft';
+          },
+          right: function(){
+            animationIn  = attrs.animationIn || 'slideInLeft';
+            animationOut = attrs.animationOut || 'slideOutRight';
+          },
+          top: function(){
+            animationIn  = attrs.animationIn || 'slideInDown';
+            animationOut = attrs.animationOut || 'slideOutUp';
+          },
+          bottom: function(){
+            animationIn  = attrs.animationIn || 'slideInUp';
+            animationOut = attrs.animationOut || 'slideOutDown';
+          }
+        };
+        setAnim[scope.position]();
+        //urgh, there must be a better way, ***there totally is btw***
+        // if(scope.position === 'left') {
+        //   animationIn  = attrs.animationIn || 'slideInRight';
+        //   animationOut = attrs.animationOut || 'slideOutLeft';
+        // } else if (scope.position === 'right') {
+        //   animationIn  = attrs.animationIn || 'slideInLeft';
+        //   animationOut = attrs.animationOut || 'slideOutRight';
+        // } else if (scope.position === 'top') {
+        //   animationIn  = attrs.animationIn || 'slideInDown';
+        //   animationOut = attrs.animationOut || 'slideOutUp';
+        // } else if (scope.position === 'bottom') {
+        //   animationIn  = attrs.animationIn || 'slideInUp';
+        //   animationOut = attrs.animationOut || 'slideOutDown';
+        // }
+
+
+        //setup
+        foundationApi.subscribe(attrs.id, function(msg) {
+          var panelPosition = $window.getComputedStyle(element[0]).getPropertyValue("position");
+
+          // patch to prevent panel animation on larger screen devices
+          // don't run animation on grid elements, only panel
+          if (panelPosition == 'static' || panelPosition == 'relative') {
+            return;
+          }
+
+          if(msg == 'show' || msg == 'open') {
+            scope.show();
+          } else if (msg == 'close' || msg == 'hide') {
+            scope.hide();
+          } else if (msg == 'toggle') {
+            scope.toggle();
+          }
+
+          if (!scope.$root.$$phase) {
+            scope.$apply();
+          }
+
+          return;
+        });
+
+        // function finish(el)
+
+        scope.hide = function() {
+          if(scope.active){
+            scope.active = false;
+            animate(element, scope.active, animationIn, animationOut);
+          }
+
+          return;
+        };
+
+        scope.show = function() {
+          if(!scope.active){
+            scope.active = true;
+            animate(element, scope.active, animationIn, animationOut);
+          }
+
+          return;
+        };
+
+        scope.toggle = function() {
+          scope.active = !scope.active;
+          animate(element, scope.active, animationIn, animationOut);
+
+          return;
+        };
+
+        element.on('click', function(e) {
+          // Check sizing
+          var srcEl = e.target;
+
+          if (!matchMedia(globalQueries.medium).matches && srcEl.href && srcEl.href.length > 0) {
+            // Hide element if it can't match at least medium
+            scope.hide();
+            animate(element, scope.active, animationIn, animationOut);
+          }
+        });
+      }
     }
   }
 
